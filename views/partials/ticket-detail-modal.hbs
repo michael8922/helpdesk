@@ -1,0 +1,69 @@
+{{!--
+  Modal Bootstrap para demostrar un READ individual sin reutilizar el
+  formulario de edición. tickets.js carga GET /api/v1/tickets/:id y completa
+  estos elementos antes de abrir el componente.
+--}}
+<div
+  id="ticket-detail-modal"
+  class="modal fade"
+  tabindex="-1"
+  aria-labelledby="ticket-detail-title"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content border-0 shadow rounded-4 overflow-hidden">
+      <div class="modal-header bg-body-tertiary">
+        <div>
+          <p class="text-uppercase small fw-semibold text-body-secondary mb-1">GET individual</p>
+          <h2 id="ticket-detail-title" class="modal-title fs-5">Ticket detail</h2>
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body p-4">
+        <dl class="row gy-2 mb-0">
+          <dt class="col-sm-4 text-body-secondary">Title</dt>
+          <dd id="detail-title" class="col-sm-8 fw-semibold"></dd>
+
+          <dt class="col-sm-4 text-body-secondary">Description</dt>
+          <dd id="detail-description" class="col-sm-8"></dd>
+
+          <dt class="col-sm-4 text-body-secondary">Status</dt>
+          <dd id="detail-status" class="col-sm-8"></dd>
+
+          <dt class="col-sm-4 text-body-secondary">Priority</dt>
+          <dd id="detail-priority" class="col-sm-8"></dd>
+
+          <dt class="col-sm-4 text-body-secondary">Estimated hours</dt>
+          <dd id="detail-estimated-hours" class="col-sm-8"></dd>
+
+          <dt class="col-sm-4 text-body-secondary">Urgent</dt>
+          <dd id="detail-urgent" class="col-sm-8"></dd>
+
+          <dt class="col-sm-4 text-body-secondary">Progress</dt>
+          <dd id="detail-progress" class="col-sm-8"></dd>
+
+          <dt class="col-sm-4 text-body-secondary">Due date</dt>
+          <dd id="detail-due-date" class="col-sm-8"></dd>
+
+          <dt class="col-sm-4 text-body-secondary">Owner</dt>
+          <dd id="detail-owner" class="col-sm-8"></dd>
+
+          <dt class="col-sm-4 text-body-secondary">Attachment</dt>
+          <dd id="detail-attachment" class="col-sm-8"></dd>
+        </dl>
+      </div>
+
+      <div class="modal-footer bg-body-tertiary">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

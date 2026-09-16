@@ -1,0 +1,33 @@
+<section class="card shadow-sm border-0 rounded-4 overflow-hidden">
+  <div class="card-body p-0">
+    <div class="d-flex justify-content-between align-items-center p-4 pb-3">
+      <div>
+        <p class="text-uppercase small fw-semibold text-body-secondary mb-1">Collection</p>
+        <h2 class="h5 mb-0">Current tickets</h2>
+      </div>
+      <span class="badge text-bg-secondary rounded-pill">REST API</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover table-striped align-middle mb-0">
+        <thead>
+          <tr>
+            <th class="ps-4">ID</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Priority</th>
+            <th>Progress</th>
+            <th>Owner</th>
+            <th class="pe-4">Actions</th>
+          </tr>
+        </thead>
+
+        {{!--
+          Handlebars entrega la estructura de la tabla, pero el tbody se
+          completa en el navegador con datos obtenidos mediante fetch().
+        --}}
+        <tbody id="ticket-table-body" class="table-group-divider"></tbody>
+      </table>
+    </div>
+  </div>
+</section>

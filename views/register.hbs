@@ -1,0 +1,119 @@
+<div class="row justify-content-center py-lg-4">
+  <div class="col-xl-9">
+    <section class="card shadow-sm border-0 rounded-4 overflow-hidden">
+      <div class="card-body p-4 p-md-5">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start gap-3 mb-4">
+          <div>
+            <span class="badge text-bg-success rounded-pill mb-3">User + Profile transaction</span>
+            <h1 class="h2 fw-bold mb-2">Create account</h1>
+            <p class="text-body-secondary mb-0">
+              This form consumes <code>POST /api/v1/auth/register</code>.
+            </p>
+          </div>
+          <a class="btn btn-outline-secondary" href="/login">Back to login</a>
+        </div>
+
+        {{!--
+          register.js intercepta submit y envía JSON a la API.
+          El backend hashea password con bcrypt y crea User + Profile dentro
+          de una transacción Sequelize.
+        --}}
+        <form id="register-form">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  class="form-control"
+                  placeholder="Name"
+                  autocomplete="name"
+                  required
+                >
+                <label for="name">Name</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  placeholder="name@example.com"
+                  autocomplete="email"
+                  required
+                >
+                <label for="email">Email</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  minlength="8"
+                  autocomplete="new-password"
+                  required
+                >
+                <label for="password">Password</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  class="form-control"
+                  placeholder="Phone"
+                  autocomplete="tel"
+                >
+                <label for="phone">Phone</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  id="birth-date"
+                  name="birthDate"
+                  type="date"
+                  class="form-control"
+                  placeholder="Birth date"
+                >
+                <label for="birth-date">Birth date</label>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="bio" class="form-label">Bio</label>
+              <textarea
+                id="bio"
+                name="bio"
+                class="form-control"
+                rows="4"
+                placeholder="Short profile description"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="d-grid d-md-flex justify-content-md-end gap-2 mt-4">
+            <button class="btn btn-success btn-lg px-4" type="submit">Create account</button>
+          </div>
+        </form>
+
+        <div id="register-message" class="alert mt-3 d-none" role="alert"></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script type="module" src="/js/register.js"></script>

@@ -1,0 +1,15 @@
+# Dependencias instaladas por npm.
+node_modules/
+
+# Variables de entorno y secretos.
+.env
+
+# Token local generado por el cliente CLI.
+.helpdesk-token
+
+# Archivos subidos durante la ejecución.
+uploads/*
+!uploads/.gitkeep
+
+# Archivos del sistema operativo.
+.DS_Store

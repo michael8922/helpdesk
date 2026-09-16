@@ -1,0 +1,83 @@
+<section class="card shadow-sm border-0 rounded-4 mb-4">
+  <div class="card-body p-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+      <div>
+        <p class="text-uppercase small fw-semibold text-body-secondary mb-1">Query string</p>
+        <h2 class="h5 mb-0">Filters</h2>
+      </div>
+      <span class="badge text-bg-secondary rounded-pill">req.query</span>
+    </div>
+
+    {{!--
+      Este formulario no recarga la página.
+      tickets.js convierte los valores informados en query params que la API
+      interpreta desde req.query.
+    --}}
+    <form id="filter-form" class="row g-3 align-items-end">
+      {{!-- Filtro categórico: status=open --}}
+      <div class="col-sm-6 col-lg-3">
+        <div class="form-floating">
+          <select id="filter-status" class="form-select" aria-label="Filter by status">
+            <option value="">All</option>
+            <option value="open">open</option>
+            <option value="in_progress">in_progress</option>
+            <option value="closed">closed</option>
+          </select>
+          <label for="filter-status">Status</label>
+        </div>
+      </div>
+
+      {{!-- Filtro booleano: urgent=true o urgent=false --}}
+      <div class="col-sm-6 col-lg-3">
+        <div class="form-floating">
+          <select id="filter-urgent" class="form-select" aria-label="Filter by urgency">
+            <option value="">All</option>
+            <option value="true">true</option>
+            <option value="false">false</option>
+          </select>
+          <label for="filter-urgent">Urgent</label>
+        </div>
+      </div>
+
+      {{!-- Filtro ordinal: priority=4 --}}
+      <div class="col-sm-6 col-lg-3">
+        <div class="form-floating">
+          <select id="filter-priority" class="form-select" aria-label="Filter by priority">
+            <option value="">All</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <label for="filter-priority">Priority</label>
+        </div>
+      </div>
+
+      {{!-- Filtro de magnitud: minProgress=50 --}}
+      <div class="col-sm-6 col-lg-3">
+        <div class="form-floating">
+          <input
+            id="filter-min-progress"
+            type="number"
+            min="0"
+            max="100"
+            class="form-control"
+            placeholder="Minimum progress"
+          >
+          <label for="filter-min-progress">Minimum progress</label>
+        </div>
+      </div>
+
+      <div class="col-12 d-flex flex-wrap justify-content-end gap-2">
+        {{!-- type=reset restaura los controles visuales. JavaScript vuelve a cargar. --}}
+        <button id="clear-filters" class="btn btn-outline-secondary" type="reset">
+          Clear
+        </button>
+        <button class="btn btn-primary" type="submit">
+          Apply filters
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

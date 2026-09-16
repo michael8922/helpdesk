@@ -1,0 +1,121 @@
+<section class="card shadow-sm border-0 rounded-4 overflow-hidden">
+  <div class="card-body p-4">
+    <div class="d-flex justify-content-between align-items-center gap-2 mb-4">
+      <div>
+        <p class="text-uppercase small fw-semibold text-body-secondary mb-1">CRUD form</p>
+        <h2 id="form-title" class="h5 mb-0">Create ticket</h2>
+      </div>
+      <span class="badge text-bg-primary rounded-pill">POST / PUT</span>
+    </div>
+
+    {{!--
+      El mismo formulario sirve para CREATE y UPDATE.
+      ticket-id permanece vacío en modo creación y contiene un id al editar.
+    --}}
+    <form id="ticket-form" class="vstack gap-3">
+      <input id="ticket-id" type="hidden">
+
+      <div class="form-floating">
+        <input
+          id="title"
+          class="form-control"
+          placeholder="Title"
+          maxlength="150"
+          required
+        >
+        <label for="title">Title</label>
+      </div>
+
+      <div>
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          class="form-control"
+          rows="4"
+          placeholder="Describe the issue"
+        ></textarea>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select id="status" class="form-select" aria-label="Status">
+              <option value="open">open</option>
+              <option value="in_progress">in_progress</option>
+              <option value="closed">closed</option>
+            </select>
+            <label for="status">Status</label>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input
+              id="priority"
+              type="number"
+              min="1"
+              max="5"
+              value="3"
+              class="form-control"
+              placeholder="Priority"
+            >
+            <label for="priority">Priority</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input
+              id="estimated-hours"
+              type="number"
+              min="0"
+              step="0.5"
+              class="form-control"
+              placeholder="Estimated hours"
+            >
+            <label for="estimated-hours">Estimated hours</label>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="progress" class="form-label small text-body-secondary">Progress</label>
+          <div class="input-group">
+            <input
+              id="progress"
+              type="number"
+              min="0"
+              max="100"
+              value="0"
+              class="form-control"
+              aria-label="Progress percentage"
+            >
+            <span class="input-group-text">%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-floating">
+        <input id="due-date" type="date" class="form-control" placeholder="Due date">
+        <label for="due-date">Due date</label>
+      </div>
+
+      <div class="form-check form-switch bg-body-tertiary border rounded-3 p-3 ps-5">
+        <input id="urgent" class="form-check-input" type="checkbox" role="switch">
+        <label for="urgent" class="form-check-label fw-semibold">Urgent ticket</label>
+      </div>
+
+      <div class="d-grid d-sm-flex gap-2 pt-1">
+        <button class="btn btn-primary flex-grow-1" type="submit">Save ticket</button>
+        <button
+          id="cancel-edit"
+          class="btn btn-outline-secondary d-none"
+          type="button"
+        >
+          Cancel edit
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

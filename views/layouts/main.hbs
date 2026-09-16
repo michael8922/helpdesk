@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{title}}</title>
+
+    {{!--
+      theme.js se carga antes del contenido visible para aplicar el modo de color
+      guardado (light/dark) lo antes posible y reducir el cambio visual al cargar.
+      No usa ninguna dependencia externa: Bootstrap leerá data-bs-theme del <html>.
+    --}}
+    <script src="/js/theme.js"></script>
+
+    {{!--
+      navbar.js sincroniza el menú con el JWT guardado en localStorage y
+      aplica guards de UX para /login, /register, /tickets y /account.
+      Al ser type=module se ejecuta de forma diferida tras parsear el HTML.
+    --}}
+    <script type="module" src="/js/navbar.js"></script>
+
+    {{!--
+      Bootstrap se carga desde CDN para resolver grilla, espaciado, formularios,
+      cards, navbar, modal y color modes sin construir un framework CSS propio.
+    --}}
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    >
+
+    {{!-- Hoja propia reservada para ajustes que Bootstrap no resuelve por sí solo. --}}
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+
+  <body class="bg-body-tertiary d-flex flex-column min-vh-100">
+    {{!-- Partial reutilizable de navegación. --}}
+    {{> navbar}}
+
+    {{!--
+      El marcador triple de body recibe el HTML ya renderizado por la vista.
+      Las tres llaves evitan que Handlebars escape las etiquetas HTML.
+
+      Usamos comentario Handlebars y no comentario HTML para que esta explicación
+      no forme parte del documento que recibe el navegador.
+    --}}
+    <main class="container-xl py-4 py-lg-5 flex-grow-1">
+      {{{body}}}
+    </main>
+
+    <footer class="border-top bg-body py-3 mt-auto">
+      <div class="container-xl text-body-secondary small d-flex justify-content-between flex-wrap gap-2">
+        <span>HelpDesk Reinforcement</span>
+        <span>{{currentYear}}</span>
+      </div>
+    </footer>
+
+    {{!--
+      El bundle incluye el JavaScript de componentes Bootstrap como collapse y modal.
+      Bootstrap 5 no requiere jQuery.
+    --}}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    ></script>
+  </body>
+</html>

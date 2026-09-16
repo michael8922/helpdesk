@@ -1,0 +1,18 @@
+/*
+  Bootstrap resuelve casi todo el diseño del proyecto mediante utilities,
+  components y color modes. Este archivo conserva solo ajustes que no tienen
+  una utility Bootstrap directa suficientemente específica para este ejemplo.
+*/
+body {
+  min-height: 100vh;
+}
+
+/* Evita que la columna de botones se vuelva demasiado angosta. */
+.ticket-actions {
+  min-width: 220px;
+}
+
+/* Mantiene legibles los diagramas de texto incluidos en la portada. */
+pre {
+  white-space: pre-wrap;
+}

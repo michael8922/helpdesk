@@ -1,0 +1,93 @@
+{{!--
+  Navbar reutilizable para todas las vistas.
+
+  La autenticación Web se guarda en localStorage, por lo que el servidor
+  no conoce directamente si el navegador tiene un JWT al renderizar Handlebars.
+  navbar.js lee ese estado en el cliente y muestra u oculta los enlaces correctos.
+--}}
+<nav class="navbar navbar-expand-lg bg-body border-bottom shadow-sm sticky-top">
+  <div class="container-xl py-1">
+    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/">
+      <span class="badge text-bg-primary rounded-pill">HD</span>
+      <span>HelpDesk</span>
+    </a>
+
+    {{!--
+      El toggler activa el collapse responsive de Bootstrap en pantallas pequeñas.
+      bootstrap.bundle.min.js interpreta automáticamente los atributos data-bs-*.
+    --}}
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#main-navbar"
+      aria-controls="main-navbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="main-navbar" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item">
+          <a class="nav-link" data-nav-link href="/">Home</a>
+        </li>
+
+        {{!--
+          Los enlaces guest-only nacen ocultos para evitar un parpadeo incorrecto
+          mientras JavaScript consulta localStorage.
+        --}}
+        <li class="nav-item d-none" data-auth-state="guest">
+          <a class="nav-link" data-nav-link href="/register">Register</a>
+        </li>
+        <li class="nav-item d-none" data-auth-state="guest">
+          <a class="nav-link" data-nav-link href="/login">Login</a>
+        </li>
+
+        {{!--
+          Estos enlaces solo aparecen cuando existe una sesión Web local.
+          La seguridad real sigue estando en la API mediante express-jwt.
+        --}}
+        <li class="nav-item d-none" data-auth-state="authenticated">
+          <a class="nav-link" data-nav-link href="/tickets">Tickets</a>
+        </li>
+        <li class="nav-item d-none" data-auth-state="authenticated">
+          <a class="nav-link" data-nav-link href="/account">Account</a>
+        </li>
+
+        {{!-- Identidad visual del usuario autenticado. --}}
+        <li class="nav-item d-none ms-lg-2" data-auth-state="authenticated">
+          <span class="navbar-text small text-body-secondary">
+            Signed in as
+            <strong class="text-body" data-current-user-name>user</strong>
+          </span>
+        </li>
+
+        {{!--
+          Logout es una ruta Web explícita. /logout renderiza una vista mínima,
+          logout.js elimina JWT + usuario de localStorage y vuelve a /login.
+        --}}
+        <li class="nav-item d-none ms-lg-2" data-auth-state="authenticated">
+          <a class="btn btn-sm btn-outline-danger" href="/logout">Logout</a>
+        </li>
+
+        {{!--
+          El botón de tema siempre está disponible, independiente de autenticación.
+          theme.js modifica data-bs-theme y Bootstrap adapta sus componentes.
+        --}}
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <button
+            id="theme-toggle"
+            class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center justify-content-center gap-2"
+            type="button"
+            aria-pressed="false"
+          >
+            <span id="theme-toggle-icon" aria-hidden="true">☾</span>
+            <span id="theme-toggle-label">Dark mode</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

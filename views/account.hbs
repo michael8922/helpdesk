@@ -1,0 +1,100 @@
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+  <div>
+    <span class="badge text-bg-secondary rounded-pill mb-2">Sequelize associations</span>
+    <h1 class="h2 fw-bold mb-1">Account & relations</h1>
+    <p class="text-body-secondary mb-0">
+      This page displays the 1:1 Profile, N:M Roles and 1:N Tickets returned
+      by <code>GET /api/v1/users/:id/summary</code>.
+    </p>
+  </div>
+
+  <a class="btn btn-outline-primary" href="/tickets">Back to tickets</a>
+</div>
+
+{{!-- account.js usa este Alert para errores de autenticación o API. --}}
+<div id="account-message" class="alert d-none shadow-sm" role="alert"></div>
+
+<div class="row g-4">
+  {{!-- Tarjeta para campos directos de User. --}}
+  <div class="col-lg-6">
+    <section class="card shadow-sm border-0 rounded-4 h-100">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="h5 mb-0">User</h2>
+          <span class="badge text-bg-primary rounded-pill">Model</span>
+        </div>
+        <dl class="row gy-2 mb-0">
+          <dt class="col-sm-4 text-body-secondary">ID</dt>
+          <dd id="account-user-id" class="col-sm-8"></dd>
+          <dt class="col-sm-4 text-body-secondary">Name</dt>
+          <dd id="account-name" class="col-sm-8"></dd>
+          <dt class="col-sm-4 text-body-secondary">Email</dt>
+          <dd id="account-email" class="col-sm-8"></dd>
+          <dt class="col-sm-4 text-body-secondary">Active</dt>
+          <dd id="account-active" class="col-sm-8"></dd>
+        </dl>
+      </div>
+    </section>
+  </div>
+
+  {{!-- Relación 1:1: un User posee un Profile. --}}
+  <div class="col-lg-6">
+    <section class="card shadow-sm border-0 rounded-4 h-100">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="h5 mb-0">Profile</h2>
+          <span class="badge text-bg-info rounded-pill">1:1</span>
+        </div>
+        <dl class="row gy-2 mb-0">
+          <dt class="col-sm-4 text-body-secondary">Phone</dt>
+          <dd id="account-phone" class="col-sm-8"></dd>
+          <dt class="col-sm-4 text-body-secondary">Birth date</dt>
+          <dd id="account-birth-date" class="col-sm-8"></dd>
+          <dt class="col-sm-4 text-body-secondary">Bio</dt>
+          <dd id="account-bio" class="col-sm-8"></dd>
+        </dl>
+      </div>
+    </section>
+  </div>
+
+  {{!-- Relación N:M: los roles llegan mediante UserRole. --}}
+  <div class="col-12">
+    <section class="card shadow-sm border-0 rounded-4">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="h5 mb-0">Roles</h2>
+          <span class="badge text-bg-warning rounded-pill">N:M</span>
+        </div>
+        <div id="account-roles" class="d-flex flex-wrap gap-2"></div>
+      </div>
+    </section>
+  </div>
+
+  {{!-- Relación 1:N: la colección de tickets pertenece al usuario. --}}
+  <div class="col-12">
+    <section class="card shadow-sm border-0 rounded-4 overflow-hidden">
+      <div class="card-body p-0">
+        <div class="d-flex justify-content-between align-items-center p-4 pb-3">
+          <h2 class="h5 mb-0">Tickets</h2>
+          <span class="badge text-bg-success rounded-pill">1:N</span>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover align-middle mb-0">
+            <thead>
+              <tr>
+                <th class="ps-4">ID</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th class="pe-4">Progress</th>
+              </tr>
+            </thead>
+            <tbody id="account-ticket-body" class="table-group-divider"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script type="module" src="/js/account.js"></script>

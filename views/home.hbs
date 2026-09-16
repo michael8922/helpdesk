@@ -1,0 +1,74 @@
+<section class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
+  <div class="card-body p-4 p-md-5">
+    <div class="row align-items-center g-4 g-lg-5">
+      <div class="col-lg-7">
+        {{!-- Datos renderizados en servidor mediante Handlebars. --}}
+        <span class="badge text-bg-primary rounded-pill mb-3">Full Stack Reinforcement</span>
+        <h1 class="display-5 fw-bold mb-3">{{appName}}</h1>
+        <p class="lead text-body-secondary mb-4">{{description}}</p>
+
+        {{!--
+          navbar.js controla también estos CTA mediante data-auth-state para que
+          la portada sea coherente con el estado de autenticación del navbar.
+        --}}
+        <div class="d-none" data-auth-state="guest">
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-primary px-4" href="/login">Sign in</a>
+            <a class="btn btn-outline-primary px-4" href="/register">Create account</a>
+          </div>
+        </div>
+
+        <div class="d-none" data-auth-state="authenticated">
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-primary px-4" href="/tickets">Open tickets</a>
+            <a class="btn btn-outline-primary px-4" href="/account">View account</a>
+            <a class="btn btn-outline-danger px-4" href="/logout">Logout</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="card bg-body-tertiary border-0 rounded-4 h-100">
+          <div class="card-body p-4">
+            <p class="text-uppercase small fw-semibold text-body-secondary mb-3">Architecture</p>
+            <pre class="mb-0 small font-monospace">Web / CLI / Postman
+        ↓
+     REST API
+        ↓
+     Services
+        ↓
+    Sequelize
+        ↓
+   PostgreSQL</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="card border-0 shadow-sm rounded-4">
+  <div class="card-body p-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+      <div>
+        <p class="text-uppercase small fw-semibold text-body-secondary mb-1">Course map</p>
+        <h2 class="h4 mb-0">Integrated topics</h2>
+      </div>
+      <span class="badge text-bg-secondary rounded-pill">M6 + M7 + M8</span>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 g-3">
+      {{!-- Handlebars itera una estructura enviada por el controller. --}}
+      {{#each features}}
+        <div class="col">
+          <div class="card h-100 border-0 bg-body-tertiary rounded-3">
+            <div class="card-body py-3 px-4 d-flex align-items-center gap-2">
+              <span class="badge text-bg-primary rounded-pill">✓</span>
+              <span>{{this}}</span>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</section>

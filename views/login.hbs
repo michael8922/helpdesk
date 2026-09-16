@@ -1,0 +1,73 @@
+<div class="row justify-content-center py-lg-4">
+  <div class="col-md-8 col-lg-6 col-xl-5">
+    <section class="card shadow-sm border-0 rounded-4 overflow-hidden">
+      <div class="card-body p-4 p-md-5">
+        <div class="text-center mb-4">
+          <span class="badge text-bg-primary rounded-pill mb-3">JWT authentication</span>
+          <h1 class="h2 fw-bold mb-2">Welcome back</h1>
+          <p class="text-body-secondary mb-0">
+            The form consumes <code>POST /api/v1/auth/login</code> with Fetch API.
+          </p>
+        </div>
+
+        {{!--
+          Este formulario NO realiza submit tradicional al backend.
+          login.js intercepta submit y consume la API con fetch().
+        --}}
+        <form id="login-form" class="vstack gap-3">
+          <div class="form-floating">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              class="form-control"
+              placeholder="name@example.com"
+              value="alice@example.com"
+              autocomplete="email"
+              required
+            >
+            <label for="email">Email</label>
+          </div>
+
+          <div class="form-floating">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              value="Password123!"
+              autocomplete="current-password"
+              required
+            >
+            <label for="password">Password</label>
+          </div>
+
+          <button class="btn btn-primary btn-lg w-100" type="submit">
+            Sign in
+          </button>
+        </form>
+
+        {{!-- JavaScript cambia dinámicamente las clases Bootstrap de este alert. --}}
+        <div id="login-message" class="alert mt-3 d-none" role="alert"></div>
+
+        <div class="card bg-body-tertiary border-0 rounded-3 mt-4">
+          <div class="card-body py-3 px-4">
+            <p class="small fw-semibold mb-1">Demo account</p>
+            <p class="small text-body-secondary mb-0">
+              <code>alice@example.com</code> / <code>Password123!</code>
+            </p>
+          </div>
+        </div>
+
+        <p class="text-center small text-body-secondary mt-4 mb-0">
+          No account yet?
+          <a class="link-primary fw-semibold" href="/register">Register here</a>.
+        </p>
+      </div>
+    </section>
+  </div>
+</div>
+
+{{!-- type=module permite usar import/export en JavaScript del navegador. --}}
+<script type="module" src="/js/login.js"></script>

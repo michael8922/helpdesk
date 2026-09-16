@@ -1,0 +1,45 @@
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+  <div>
+    <span class="badge text-bg-primary rounded-pill mb-2">Authenticated Web client</span>
+    <h1 class="h2 fw-bold mb-1">Tickets</h1>
+    <p class="text-body-secondary mb-0">
+      Handlebars renders the page shell; Fetch API performs READ, CREATE,
+      UPDATE, DELETE, filters and file operations.
+    </p>
+  </div>
+
+  <a class="btn btn-outline-primary" href="/account">View account</a>
+</div>
+
+{{!-- tickets.js cambia dinámicamente este Alert Bootstrap para mostrar feedback. --}}
+<div id="page-message" class="alert d-none shadow-sm" role="alert"></div>
+
+<div class="row g-4 align-items-start">
+  <div class="col-xl-4">
+    {{!-- Partial reutilizable para CREATE y UPDATE. --}}
+    {{> ticket-form}}
+  </div>
+
+  <div class="col-xl-8">
+    {{!-- Filtros y tabla se mantienen en partials independientes. --}}
+    {{> ticket-filters}}
+    {{> ticket-table}}
+  </div>
+</div>
+
+{{!--
+  El input file permanece oculto. Al presionar Attach en una fila,
+  tickets.js guarda el id del ticket y abre este selector programáticamente.
+--}}
+<input
+  id="attachment-input"
+  type="file"
+  class="d-none"
+  accept=".png,.jpg,.jpeg,.pdf,.txt"
+>
+
+{{!-- Partial Bootstrap usado para GET individual. --}}
+{{> ticket-detail-modal}}
+
+{{!-- type=module habilita import/export en JavaScript del navegador. --}}
+<script type="module" src="/js/tickets.js"></script>
