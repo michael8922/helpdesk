@@ -1,74 +1,34 @@
-<section class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
-  <div class="card-body p-4 p-md-5">
-    <div class="row align-items-center g-4 g-lg-5">
-      <div class="col-lg-7">
-        {{!-- Datos renderizados en servidor mediante Handlebars. --}}
-        <span class="badge text-bg-primary rounded-pill mb-3">Full Stack Reinforcement</span>
-        <h1 class="display-5 fw-bold mb-3">{{appName}}</h1>
-        <p class="lead text-body-secondary mb-4">{{description}}</p>
-
-        {{!--
-          navbar.js controla también estos CTA mediante data-auth-state para que
-          la portada sea coherente con el estado de autenticación del navbar.
-        --}}
-        <div class="d-none" data-auth-state="guest">
-          <div class="d-flex flex-wrap gap-2">
-            <a class="btn btn-primary px-4" href="/login">Sign in</a>
-            <a class="btn btn-outline-primary px-4" href="/register">Create account</a>
-          </div>
-        </div>
-
-        <div class="d-none" data-auth-state="authenticated">
-          <div class="d-flex flex-wrap gap-2">
-            <a class="btn btn-primary px-4" href="/tickets">Open tickets</a>
-            <a class="btn btn-outline-primary px-4" href="/account">View account</a>
-            <a class="btn btn-outline-danger px-4" href="/logout">Logout</a>
-          </div>
-        </div>
+<section class="welcome-hero mb-4">
+  <div class="row align-items-center g-5">
+    <div class="col-lg-7">
+      <span class="eyebrow"><span class="status-dot"></span> TU ESPACIO DE SOPORTE</span>
+      <h1>Menos obstáculos.<br>Mejor <span>soporte.</span></h1>
+      <p class="hero-description">Un espacio claro para gestionar solicitudes, avanzar con tu trabajo y acercar cada problema a su solución.</p>
+      <div class="d-none" data-auth-state="guest">
+        <div class="d-flex flex-wrap gap-3"><a class="btn btn-primary btn-lg" href="/register">Comenzar <span aria-hidden="true">↗</span></a><a class="btn btn-outline-secondary btn-lg" href="/login">Iniciar sesión</a></div>
       </div>
-
-      <div class="col-lg-5">
-        <div class="card bg-body-tertiary border-0 rounded-4 h-100">
-          <div class="card-body p-4">
-            <p class="text-uppercase small fw-semibold text-body-secondary mb-3">Architecture</p>
-            <pre class="mb-0 small font-monospace">Web / CLI / Postman
-        ↓
-     REST API
-        ↓
-     Services
-        ↓
-    Sequelize
-        ↓
-   PostgreSQL</pre>
-          </div>
-        </div>
+      <div class="d-none" data-auth-state="authenticated">
+        <div class="d-flex flex-wrap gap-3"><a class="btn btn-primary btn-lg" href="/tickets">Ir a tickets <span aria-hidden="true">↗</span></a><a class="btn btn-outline-secondary btn-lg" href="/account">Mi cuenta</a></div>
+      </div>
+      <p class="hero-note">Organiza solicitudes. Define prioridades. Sigue avanzando.</p>
+    </div>
+    <div class="col-lg-5">
+      <div class="workflow-preview" aria-label="Ilustración del flujo de trabajo de un ticket">
+        <div class="d-flex justify-content-between align-items-center mb-4"><span class="preview-brand">HD <span>/ Espacio de trabajo</span></span><span class="preview-label">FLUJO DE TRABAJO</span></div>
+        <h2 class="h4 fw-bold mb-1">Todo más claro.</h2><p class="text-body-secondary small mb-4">Desde la primera solicitud hasta la solución final.</p>
+        <div class="workflow-item"><span class="step-icon">01</span><div><strong>Registra la solicitud</strong><small>Un punto de partida para cada problema</small></div><span class="workflow-badge">Abierto</span></div>
+        <div class="workflow-item"><span class="step-icon">02</span><div><strong>Haz que el trabajo avance</strong><small>Controla la prioridad y el avance</small></div><span class="workflow-badge progress-badge">En progreso</span></div>
+        <div class="workflow-item"><span class="step-icon">03</span><div><strong>Completa el proceso</strong><small>Mantén el foco en la solución</small></div><span class="workflow-badge closed-badge">Cerrado</span></div>
+        <div class="preview-bottom"><span class="status-dot"></span> Todo el contexto en un solo lugar <span aria-hidden="true">↗</span></div>
       </div>
     </div>
   </div>
 </section>
-
-<section class="card border-0 shadow-sm rounded-4">
-  <div class="card-body p-4">
-    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
-      <div>
-        <p class="text-uppercase small fw-semibold text-body-secondary mb-1">Course map</p>
-        <h2 class="h4 mb-0">Integrated topics</h2>
-      </div>
-      <span class="badge text-bg-secondary rounded-pill">M6 + M7 + M8</span>
-    </div>
-
-    <div class="row row-cols-1 row-cols-md-2 g-3">
-      {{!-- Handlebars itera una estructura enviada por el controller. --}}
-      {{#each features}}
-        <div class="col">
-          <div class="card h-100 border-0 bg-body-tertiary rounded-3">
-            <div class="card-body py-3 px-4 d-flex align-items-center gap-2">
-              <span class="badge text-bg-primary rounded-pill">✓</span>
-              <span>{{this}}</span>
-            </div>
-          </div>
-        </div>
-      {{/each}}
-    </div>
+<section class="benefits-section" aria-labelledby="benefits-title">
+  <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-4"><div><p class="eyebrow mb-2">PENSADO PARA EL DÍA A DÍA</p><h2 id="benefits-title" class="h3 fw-bold mb-0">Cada cosa en su lugar.</h2></div><p class="text-body-secondary mb-0">Una forma más simple de gestionar el soporte.</p></div>
+  <div class="row g-3">
+    <div class="col-md-4"><article class="feature-card"><span class="feature-number">01 / ORGANIZA</span><h3>Enfócate en lo importante</h3><p>Filtra solicitudes por estado, urgencia y prioridad para identificar qué necesita tu atención.</p><span class="feature-tag">Menos búsquedas, más soluciones</span></article></div>
+    <div class="col-md-4"><article class="feature-card"><span class="feature-number">02 / HAZ SEGUIMIENTO</span><h3>Mantén el trabajo en marcha</h3><p>Define fechas límite, estima el esfuerzo y sigue el avance de cada ticket hasta su resolución.</p><span class="feature-tag">Cada paso, más claro</span></article></div>
+    <div class="col-md-4"><article class="feature-card"><span class="feature-number">03 / CONECTA</span><h3>Conserva el contexto</h3><p>Añade detalles y archivos adjuntos para mantener toda la información junto a la solicitud.</p><span class="feature-tag">Detalles que marcan la diferencia</span></article></div>
   </div>
 </section>

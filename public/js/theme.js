@@ -45,7 +45,7 @@ function updateToggleButton(theme) {
 
   button.setAttribute("aria-pressed", String(isDark));
   icon.textContent = isDark ? "☀" : "☾";
-  label.textContent = isDark ? "Light mode" : "Dark mode";
+  label.textContent = isDark ? "Modo claro" : "Modo oscuro";
 }
 
 // Aplicamos el tema antes de renderizar el contenido principal de la página.

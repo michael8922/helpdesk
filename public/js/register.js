@@ -43,7 +43,7 @@ form.addEventListener("submit", async (event) => {
       body: JSON.stringify(readRegisterForm()),
     });
 
-    showMessage("Account created. Redirecting to login...", "success");
+    showMessage("Cuenta creada. Redirigiendo al inicio de sesión...", "success");
     form.reset();
 
     // El registro no inicia sesión automáticamente en este ejercicio.

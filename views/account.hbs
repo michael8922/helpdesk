@@ -1,14 +1,13 @@
 <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
   <div>
-    <span class="badge text-bg-secondary rounded-pill mb-2">Sequelize associations</span>
-    <h1 class="h2 fw-bold mb-1">Account & relations</h1>
+    <span class="badge text-bg-secondary rounded-pill mb-2">TU PERFIL</span>
+    <h1 class="h2 fw-bold mb-1">Mi cuenta</h1>
     <p class="text-body-secondary mb-0">
-      This page displays the 1:1 Profile, N:M Roles and 1:N Tickets returned
-      by <code>GET /api/v1/users/:id/summary</code>.
+      Consulta tu perfil, tus roles y tus tickets.
     </p>
   </div>
 
-  <a class="btn btn-outline-primary" href="/tickets">Back to tickets</a>
+  <a class="btn btn-outline-primary" href="/tickets">Volver a tickets</a>
 </div>
 
 {{!-- account.js usa este Alert para errores de autenticación o API. --}}
@@ -20,17 +19,17 @@
     <section class="card shadow-sm border-0 rounded-4 h-100">
       <div class="card-body p-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h2 class="h5 mb-0">User</h2>
-          <span class="badge text-bg-primary rounded-pill">Model</span>
+          <h2 class="h5 mb-0">Usuario</h2>
+          <span class="badge text-bg-primary rounded-pill">Datos personales</span>
         </div>
         <dl class="row gy-2 mb-0">
           <dt class="col-sm-4 text-body-secondary">ID</dt>
           <dd id="account-user-id" class="col-sm-8"></dd>
-          <dt class="col-sm-4 text-body-secondary">Name</dt>
+          <dt class="col-sm-4 text-body-secondary">Nombre</dt>
           <dd id="account-name" class="col-sm-8"></dd>
-          <dt class="col-sm-4 text-body-secondary">Email</dt>
+          <dt class="col-sm-4 text-body-secondary">Correo electrónico</dt>
           <dd id="account-email" class="col-sm-8"></dd>
-          <dt class="col-sm-4 text-body-secondary">Active</dt>
+          <dt class="col-sm-4 text-body-secondary">Activo</dt>
           <dd id="account-active" class="col-sm-8"></dd>
         </dl>
       </div>
@@ -42,15 +41,15 @@
     <section class="card shadow-sm border-0 rounded-4 h-100">
       <div class="card-body p-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h2 class="h5 mb-0">Profile</h2>
+          <h2 class="h5 mb-0">Perfil</h2>
           <span class="badge text-bg-info rounded-pill">1:1</span>
         </div>
         <dl class="row gy-2 mb-0">
-          <dt class="col-sm-4 text-body-secondary">Phone</dt>
+          <dt class="col-sm-4 text-body-secondary">Teléfono</dt>
           <dd id="account-phone" class="col-sm-8"></dd>
-          <dt class="col-sm-4 text-body-secondary">Birth date</dt>
+          <dt class="col-sm-4 text-body-secondary">Fecha de nacimiento</dt>
           <dd id="account-birth-date" class="col-sm-8"></dd>
-          <dt class="col-sm-4 text-body-secondary">Bio</dt>
+          <dt class="col-sm-4 text-body-secondary">Biografía</dt>
           <dd id="account-bio" class="col-sm-8"></dd>
         </dl>
       </div>
@@ -83,10 +82,10 @@
             <thead>
               <tr>
                 <th class="ps-4">ID</th>
-                <th>Title</th>
-                <th>Status</th>
-                <th>Priority</th>
-                <th class="pe-4">Progress</th>
+                <th>Título</th>
+                <th>Estado</th>
+                <th>Prioridad</th>
+                <th class="pe-4">Avance</th>
               </tr>
             </thead>
             <tbody id="account-ticket-body" class="table-group-divider"></tbody>

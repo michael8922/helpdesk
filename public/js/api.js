@@ -1,3 +1,4 @@
+import { errorLabel } from "./labels.js";
 // Claves de localStorage usadas por el cliente Web.
 // Guardamos el JWT y una copia mínima del usuario autenticado por separado
 // para poder reutilizarlos entre páginas y recargas.
@@ -85,7 +86,7 @@ export async function apiFetch(path, options = {}) {
       // Sin token no podemos consumir endpoints protegidos.
       // Redirigimos al login y detenemos la operación actual.
       window.location.href = "/login";
-      throw new Error("Authentication token not found");
+      throw new Error("No se encontró una sesión activa.");
     }
 
     // Bearer es el esquema estándar que usaremos para transportar el JWT.
@@ -95,26 +96,31 @@ export async function apiFetch(path, options = {}) {
   // IMPORTANTE: no establecemos Content-Type automáticamente.
   // - Para JSON, cada llamada lo indicará explícitamente.
   // - Para FormData, el navegador debe generar multipart/form-data y su boundary.
-  const response = await fetch(path, {
+  let response;
+  try {
+    response = await fetch(path, {
     ...fetchOptions,
-    headers,
-  });
+      headers,
+    });
+  } catch {
+    throw new Error("No se pudo conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.");
+  }
 
   if (response.status === 401 && auth) {
     // Un 401 puede significar token vencido, ausente o inválido.
     // Limpiamos la sesión local para no seguir reutilizando un token inútil.
     clearSession();
     window.location.href = "/login";
-    throw new Error("Session expired or token invalid");
+    throw new Error("La sesión expiró o no es válida. Inicia sesión de nuevo.");
   }
 
   // 204 No Content no trae cuerpo, por lo que response.json() fallaría.
-  const data = response.status === 204 ? null : await response.json();
+  const data = response.status === 204 ? null : await response.json().catch(() => null);
 
   // fetch() solo rechaza la Promise por errores de red.
   // Un 400/404/500 sigue siendo una respuesta válida y debemos revisar ok.
   if (!response.ok) {
-    throw new Error(data?.message ?? `HTTP ${response.status}`);
+    throw new Error(errorLabel(data?.message, response.status));
   }
 
   return data;

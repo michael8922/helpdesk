@@ -38,7 +38,7 @@ form.addEventListener("submit", async (event) => {
     // Guardamos ambos para que otras páginas puedan reutilizarlos.
     setSession(result.data.token, result.data.user);
 
-    showMessage("Login successful. Redirecting...", "success");
+    showMessage("Sesión iniciada. Redirigiendo...", "success");
 
     // Si navbar.js nos envió a login desde una página protegida, `next`
     // conserva ese destino. Validamos que sea una ruta local para evitar

@@ -23,7 +23,7 @@
       data-bs-target="#main-navbar"
       aria-controls="main-navbar"
       aria-expanded="false"
-      aria-label="Toggle navigation"
+      aria-label="Abrir o cerrar el menú"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,7 +31,7 @@
     <div id="main-navbar" class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
         <li class="nav-item">
-          <a class="nav-link" data-nav-link href="/">Home</a>
+          <a class="nav-link" data-nav-link href="/">Inicio</a>
         </li>
 
         {{!--
@@ -39,10 +39,10 @@
           mientras JavaScript consulta localStorage.
         --}}
         <li class="nav-item d-none" data-auth-state="guest">
-          <a class="nav-link" data-nav-link href="/register">Register</a>
+          <a class="nav-link" data-nav-link href="/register">Registrarse</a>
         </li>
         <li class="nav-item d-none" data-auth-state="guest">
-          <a class="nav-link" data-nav-link href="/login">Login</a>
+          <a class="nav-link" data-nav-link href="/login">Iniciar sesión</a>
         </li>
 
         {{!--
@@ -53,14 +53,14 @@
           <a class="nav-link" data-nav-link href="/tickets">Tickets</a>
         </li>
         <li class="nav-item d-none" data-auth-state="authenticated">
-          <a class="nav-link" data-nav-link href="/account">Account</a>
+          <a class="nav-link" data-nav-link href="/account">Mi cuenta</a>
         </li>
 
         {{!-- Identidad visual del usuario autenticado. --}}
         <li class="nav-item d-none ms-lg-2" data-auth-state="authenticated">
           <span class="navbar-text small text-body-secondary">
-            Signed in as
-            <strong class="text-body" data-current-user-name>user</strong>
+            Sesión iniciada como
+            <strong class="text-body" data-current-user-name>usuario</strong>
           </span>
         </li>
 
@@ -69,7 +69,7 @@
           logout.js elimina JWT + usuario de localStorage y vuelve a /login.
         --}}
         <li class="nav-item d-none ms-lg-2" data-auth-state="authenticated">
-          <a class="btn btn-sm btn-outline-danger" href="/logout">Logout</a>
+          <a class="btn btn-sm btn-outline-danger" href="/logout">Cerrar sesión</a>
         </li>
 
         {{!--
@@ -84,7 +84,7 @@
             aria-pressed="false"
           >
             <span id="theme-toggle-icon" aria-hidden="true">☾</span>
-            <span id="theme-toggle-label">Dark mode</span>
+            <span id="theme-toggle-label">Modo oscuro</span>
           </button>
         </li>
       </ul>
