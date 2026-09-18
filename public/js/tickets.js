@@ -1,3 +1,4 @@
+import { statusLabel } from "./labels.js";
 import { apiFetch, getToken } from "./api.js";
 
 // Referencias a elementos de la vista. querySelector() recibe selectores CSS.
@@ -37,7 +38,7 @@ function resetTicketForm() {
   document.querySelector("#priority").value = "3";
   document.querySelector("#progress").value = "0";
   document.querySelector("#status").value = "open";
-  formTitle.textContent = "Create ticket";
+  formTitle.textContent = "Crear ticket";
   cancelEditButton.classList.add("d-none");
 }
 
@@ -98,7 +99,7 @@ function renderTickets(tickets) {
     const values = [
       ticket.id,
       ticket.title,
-      ticket.status,
+      statusLabel(ticket.status),
       ticket.priority,
       `${ticket.progress}%`,
       ticket.user?.name ?? "-",
@@ -118,28 +119,28 @@ function renderTickets(tickets) {
 
     // READ individual: muestra GET /tickets/:id en un Modal Bootstrap.
     group.appendChild(
-      createActionButton("View", "btn btn-sm btn-outline-info", () => {
+      createActionButton("Ver", "btn btn-sm btn-outline-info", () => {
         viewTicket(ticket.id);
       }),
     );
 
     // UPDATE: primero obtenemos el ticket individual y rellenamos el form.
     group.appendChild(
-      createActionButton("Edit", "btn btn-sm btn-outline-primary", () => {
+      createActionButton("Editar", "btn btn-sm btn-outline-primary", () => {
         loadTicketIntoForm(ticket.id);
       }),
     );
 
     // DELETE del recurso Ticket.
     group.appendChild(
-      createActionButton("Delete", "btn btn-sm btn-outline-danger", () => {
+      createActionButton("Eliminar", "btn btn-sm btn-outline-danger", () => {
         deleteTicket(ticket.id);
       }),
     );
 
     // Upload: dataset guarda temporalmente qué ticket recibirá el archivo.
     group.appendChild(
-      createActionButton("Attach", "btn btn-sm btn-outline-secondary", () => {
+      createActionButton("Adjuntar", "btn btn-sm btn-outline-secondary", () => {
         attachmentInput.dataset.ticketId = ticket.id;
         attachmentInput.click();
       }),
@@ -152,12 +153,12 @@ function renderTickets(tickets) {
       link.target = "_blank";
       link.rel = "noreferrer";
       link.className = "btn btn-sm btn-outline-success";
-      link.textContent = "File";
+      link.textContent = "Archivo";
       group.appendChild(link);
 
       // DELETE específico del archivo, sin eliminar el ticket.
       group.appendChild(
-        createActionButton("Remove file", "btn btn-sm btn-outline-warning", () => {
+        createActionButton("Quitar archivo", "btn btn-sm btn-outline-warning", () => {
           deleteAttachment(ticket.id);
         }),
       );
@@ -195,10 +196,10 @@ async function viewTicket(id) {
     document.querySelector("#ticket-detail-title").textContent = `Ticket #${ticket.id}`;
     setDetailText("#detail-title", ticket.title);
     setDetailText("#detail-description", ticket.description);
-    setDetailText("#detail-status", ticket.status);
+    setDetailText("#detail-status", statusLabel(ticket.status));
     setDetailText("#detail-priority", ticket.priority);
     setDetailText("#detail-estimated-hours", ticket.estimatedHours);
-    setDetailText("#detail-urgent", String(ticket.urgent));
+    setDetailText("#detail-urgent", ticket.urgent ? "Sí" : "No");
     setDetailText("#detail-progress", `${ticket.progress}%`);
     setDetailText("#detail-due-date", ticket.dueDate);
     setDetailText("#detail-owner", ticket.user?.email);
@@ -231,7 +232,7 @@ async function loadTicketIntoForm(id) {
     document.querySelector("#due-date").value = ticket.dueDate ?? "";
     document.querySelector("#urgent").checked = ticket.urgent;
 
-    formTitle.textContent = `Edit ticket #${ticket.id}`;
+    formTitle.textContent = `Editar ticket #${ticket.id}`;
     cancelEditButton.classList.remove("d-none");
   } catch (error) {
     showMessage(error.message, "danger");
@@ -279,7 +280,7 @@ async function saveTicket(event) {
       body: JSON.stringify(payload),
     });
 
-    showMessage(id ? "Ticket updated." : "Ticket created.");
+    showMessage(id ? "Ticket actualizado." : "Ticket creado.");
     resetTicketForm();
     await loadTickets();
   } catch (error) {
@@ -292,7 +293,7 @@ async function saveTicket(event) {
  * antes de ejecutar una acción destructiva.
  */
 async function deleteTicket(id) {
-  const confirmed = window.confirm(`Delete ticket #${id}?`);
+  const confirmed = window.confirm(`¿Eliminar el ticket #${id}?`);
 
   if (!confirmed) {
     return;
@@ -303,7 +304,7 @@ async function deleteTicket(id) {
       method: "DELETE",
     });
 
-    showMessage("Ticket deleted.");
+    showMessage("Ticket eliminado.");
     await loadTickets();
   } catch (error) {
     showMessage(error.message, "danger");
@@ -335,7 +336,7 @@ async function uploadAttachment() {
       body: formData,
     });
 
-    showMessage("Attachment uploaded.");
+    showMessage("Archivo adjuntado.");
     attachmentInput.value = "";
     delete attachmentInput.dataset.ticketId;
     await loadTickets();
@@ -348,7 +349,7 @@ async function uploadAttachment() {
  * DELETE del archivo asociado manteniendo intacto el registro Ticket.
  */
 async function deleteAttachment(ticketId) {
-  const confirmed = window.confirm(`Remove attachment from ticket #${ticketId}?`);
+  const confirmed = window.confirm(`¿Quitar el archivo adjunto del ticket #${ticketId}?`);
 
   if (!confirmed) {
     return;
@@ -359,7 +360,7 @@ async function deleteAttachment(ticketId) {
       method: "DELETE",
     });
 
-    showMessage("Attachment removed.");
+    showMessage("Archivo eliminado.");
     await loadTickets();
   } catch (error) {
     showMessage(error.message, "danger");
@@ -389,4 +390,3 @@ clearFiltersButton.addEventListener("click", () => {
 
 attachmentInput.addEventListener("change", uploadAttachment);
 cancelEditButton.addEventListener("click", resetTicketForm);
-

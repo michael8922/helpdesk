@@ -47,7 +47,7 @@ function renderAuthVisibility(authenticated) {
  */
 function renderCurrentUser() {
   const user = getCurrentUser();
-  const label = user?.name ?? user?.email ?? "user";
+  const label = user?.name ?? user?.email ?? "usuario";
 
   for (const element of document.querySelectorAll("[data-current-user-name]")) {
     element.textContent = label;

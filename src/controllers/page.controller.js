@@ -27,7 +27,7 @@ export function renderHome(req, res) {
  */
 export function renderLogin(req, res) {
   return res.render("login", {
-    title: "Login | HelpDesk",
+    title: "Iniciar sesión | HelpDesk",
   });
 }
 
@@ -37,7 +37,7 @@ export function renderLogin(req, res) {
  */
 export function renderRegister(req, res) {
   return res.render("register", {
-    title: "Register | HelpDesk",
+    title: "Crear cuenta | HelpDesk",
   });
 }
 
@@ -58,7 +58,7 @@ export function renderTickets(req, res) {
  */
 export function renderAccount(req, res) {
   return res.render("account", {
-    title: "Account & relations | HelpDesk",
+    title: "Mi cuenta | HelpDesk",
   });
 }
 
@@ -69,6 +69,6 @@ export function renderAccount(req, res) {
  */
 export function renderLogout(req, res) {
   return res.render("logout", {
-    title: "Logout | HelpDesk",
+    title: "Cerrar sesión | HelpDesk",
   });
 }

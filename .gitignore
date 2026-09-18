@@ -13,3 +13,6 @@ uploads/*
 
 # Archivos del sistema operativo.
 .DS_Store
+
+# Local dependency cache.
+.npm-cache/

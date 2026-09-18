@@ -1,18 +1,88 @@
-/*
-  Bootstrap resuelve casi todo el diseño del proyecto mediante utilities,
-  components y color modes. Este archivo conserva solo ajustes que no tienen
-  una utility Bootstrap directa suficientemente específica para este ejemplo.
-*/
-body {
-  min-height: 100vh;
+/* Shared design tokens also drive Bootstrap components and color modes. */
+:root, [data-bs-theme="light"] {
+  --bs-primary: #087f72;
+  --bs-primary-rgb: 8, 127, 114;
+  --bs-link-color: #087467;
+  --bs-link-hover-color: #05564d;
+  --bs-body-color: #192f3b;
+  --bs-body-bg: #ffffff;
+  --bs-tertiary-bg: #f3f6f6; --bs-tertiary-bg-rgb: 243, 246, 246; --bs-body-bg-rgb: 255, 255, 255;
+  --bs-secondary-color: #60717c;
+  --bs-border-color: #dde6e6;
+  --hd-accent: #087f72;
+  --hd-soft: #e5f3ef;
+  --hd-shadow: 0 8px 32px rgb(24 50 61 / 5%);
 }
+[data-bs-theme="dark"] {
+  --bs-body-color: #e3eeef;
+  --bs-body-bg: #192a33;
+  --bs-tertiary-bg: #101e26; --bs-tertiary-bg-rgb: 16, 30, 38; --bs-body-bg-rgb: 25, 42, 51;
+  --bs-secondary-color: #a7bac2;
+  --bs-border-color: #32464f;
+  --bs-primary-rgb: 83, 204, 180;
+  --bs-link-color: #75ddc5;
+  --bs-link-hover-color: #a9f3e1;
+  --hd-accent: #75ddc5;
+  --hd-soft: #203f40;
+  --hd-shadow: 0 8px 32px rgb(0 0 0 / 12%);
+}
+body { min-height: 100vh; font-family: 'Segoe UI', system-ui, sans-serif; letter-spacing: -.015em; }
+.container-xl { max-width: 1280px; }
+.navbar { min-height: 82px; box-shadow: none !important; }
+.navbar-brand { letter-spacing: -.04em; font-size: 1.4rem; }
+.navbar-brand .badge { border-radius: 12px !important; padding: 12px 10px; font-size: .85rem; }
+.nav-link { font-size: .9rem; font-weight: 600; padding: .65rem 1rem !important; border-radius: 8px; }
+.nav-link.active { color: var(--hd-accent) !important; background: var(--hd-soft); }
+.btn { border-radius: 9px; padding: .65rem 1rem; font-weight: 600; font-size: .9rem; transition: background-color .15s, box-shadow .15s; }
+.btn-lg { padding: .9rem 1.4rem; font-size: .95rem; }
+.btn-sm { padding: .4rem .7rem; font-size: .8rem; }
+.btn-primary, .btn-success { --bs-btn-bg: #087f72; --bs-btn-border-color: #087f72; --bs-btn-hover-bg: #05675d; --bs-btn-hover-border-color: #05675d; --bs-btn-active-bg: #05564d; --bs-btn-active-border-color: #05564d; --bs-btn-disabled-bg: #087f72; --bs-btn-disabled-border-color: #087f72; }
+.btn-outline-primary { --bs-btn-color: var(--hd-accent); --bs-btn-border-color: var(--hd-accent); --bs-btn-hover-bg: #087f72; --bs-btn-hover-border-color: #087f72; --bs-btn-active-bg: #05675d; --bs-btn-active-border-color: #05675d; }
+.btn-outline-secondary { --bs-btn-color: var(--bs-body-color); --bs-btn-border-color: var(--bs-border-color); }
+:focus-visible { outline: 3px solid var(--hd-accent); outline-offset: 3px; }
+.form-control, .form-select { border-radius: 9px; border-color: var(--bs-border-color); font-size: .9rem; }
+.form-control:focus, .form-select:focus { border-color: var(--hd-accent); box-shadow: 0 0 0 .2rem rgb(8 127 114 / 15%); }
+.form-check-input:checked { background-color: #087f72; border-color: #087f72; }
+.card { border: 1px solid var(--bs-border-color) !important; box-shadow: var(--hd-shadow) !important; }
+.card .card { box-shadow: none !important; }
+h1, h2, h3 { letter-spacing: -.04em; }
+.eyebrow { font-size: .7rem; font-weight: 750; letter-spacing: .13em; color: var(--hd-accent); display: inline-flex; align-items: center; gap: 9px; }
+.status-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--hd-accent); flex-shrink: 0; }
+.welcome-hero { padding: 48px 0 64px; }
+.welcome-hero h1 { font-size: clamp(2.8rem, 5.7vw, 5rem); font-weight: 750; line-height: 1.08; margin: 24px 0; letter-spacing: -.06em; }
+.welcome-hero h1 > span { color: var(--hd-accent); }
+.hero-description { font-size: 1.1rem; line-height: 1.8; color: var(--bs-secondary-color); max-width: 490px; margin-bottom: 28px; }
+.hero-note { color: var(--bs-secondary-color); font-size: .78rem; margin-top: 24px; }
+.workflow-preview { background: var(--bs-body-bg); border: 1px solid var(--bs-border-color); border-radius: 20px; padding: 28px; box-shadow: var(--hd-shadow); transform: rotate(-2deg); }
+.preview-brand { font-weight: 800; color: var(--hd-accent); }
+.preview-brand > span { font-size: .78rem; color: var(--bs-secondary-color); font-weight: 500; }
+.preview-label { font-size: .55rem; letter-spacing: .09em; color: var(--bs-secondary-color); }
+.workflow-item { display: flex; gap: 12px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--bs-border-color); }
+.step-icon { display: grid; place-items: center; width: 32px; height: 36px; border-radius: 9px; background: var(--bs-tertiary-bg); color: var(--bs-secondary-color); font-size: .7rem; flex-shrink: 0; }
+.workflow-item strong { display: block; font-size: .83rem; }
+.workflow-item small { display: block; color: var(--bs-secondary-color); font-size: .7rem; margin-top: 4px; }
+.workflow-badge { margin-left: auto; background: var(--hd-soft); color: var(--hd-accent); border-radius: 5px; padding: 4px 7px; font-size: .6rem; white-space: nowrap; }
+.progress-badge { background: #fff0d0; color: #805400; }
+.closed-badge { background: var(--bs-tertiary-bg); color: var(--bs-secondary-color); }
+.preview-bottom { display: flex; gap: 8px; align-items: center; margin-top: 22px; font-size: .7rem; color: var(--bs-secondary-color); }
+.preview-bottom > :last-child { margin-left: auto; }
+.benefits-section { border-top: 1px solid var(--bs-border-color); padding: 32px 0 12px; }
+.feature-card { background: var(--bs-body-bg); border: 1px solid var(--bs-border-color); border-radius: 14px; padding: 28px; height: 100%; }
+.feature-number { font-size: .65rem; letter-spacing: .1em; color: var(--hd-accent); font-weight: 700; }
+.feature-card h3 { font-size: 1.25rem; font-weight: 700; margin: 22px 0 12px; }
+.feature-card p { color: var(--bs-secondary-color); font-size: .88rem; line-height: 1.8; }
+.feature-tag { font-size: .7rem; color: var(--hd-accent); }
+.table { --bs-table-striped-bg: transparent; --bs-table-hover-bg: var(--hd-soft); font-size: .85rem; }
+.table thead th { background: var(--bs-tertiary-bg); color: var(--bs-secondary-color); font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; padding-block: 15px; white-space: nowrap; }
+.table td { padding-block: 18px; }
+.ticket-actions { min-width: 220px; }
+.badge { font-weight: 600; padding: .5em .75em; }
+footer { font-size: .8rem; }
+pre { white-space: pre-wrap; }
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 2000; padding: 12px 20px; background: var(--bs-body-bg); }
+.skip-link:focus { top: 12px; }
+@media (max-width: 991px) { .welcome-hero { padding: 16px 0 32px; } .workflow-preview { transform: none; } .navbar-collapse { padding: 16px 0; } }
+@media (max-width: 575px) { .container-xl { padding-inline: 20px; } .workflow-preview { padding: 20px; } .workflow-item { gap: 8px; } .workflow-item small { max-width: 145px; } .hero-description { font-size: 1rem; } .feature-card { padding: 24px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
 
-/* Evita que la columna de botones se vuelva demasiado angosta. */
-.ticket-actions {
-  min-width: 220px;
-}
-
-/* Mantiene legibles los diagramas de texto incluidos en la portada. */
-pre {
-  white-space: pre-wrap;
-}
+.welcome-hero > .row { --bs-gutter-x: 2rem; }

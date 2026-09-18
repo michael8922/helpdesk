@@ -2,55 +2,55 @@
   <div class="card-body p-4">
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
       <div>
-        <p class="text-uppercase small fw-semibold text-body-secondary mb-1">Query string</p>
-        <h2 class="h5 mb-0">Filters</h2>
+        <p class="text-uppercase small fw-semibold text-body-secondary mb-1">Encuentra lo importante</p>
+        <h2 class="h5 mb-0">Filtros</h2>
       </div>
-      <span class="badge text-bg-secondary rounded-pill">req.query</span>
+      <span class="badge text-bg-secondary rounded-pill">Ajusta tu búsqueda</span>
     </div>
 
     {{!--
       Este formulario no recarga la página.
       tickets.js convierte los valores informados en query params que la API
-      interpreta desde req.query.
+      interpreta desde Refine your view.
     --}}
     <form id="filter-form" class="row g-3 align-items-end">
       {{!-- Filtro categórico: status=open --}}
       <div class="col-sm-6 col-lg-3">
         <div class="form-floating">
-          <select id="filter-status" class="form-select" aria-label="Filter by status">
-            <option value="">All</option>
-            <option value="open">open</option>
-            <option value="in_progress">in_progress</option>
-            <option value="closed">closed</option>
+          <select id="filter-status" class="form-select" aria-label="Filtrar por estado">
+            <option value="">Todos</option>
+            <option value="open">Abierto</option>
+            <option value="in_progress">En progreso</option>
+            <option value="closed">Cerrado</option>
           </select>
-          <label for="filter-status">Status</label>
+          <label for="filter-status">Estado</label>
         </div>
       </div>
 
       {{!-- Filtro booleano: urgent=true o urgent=false --}}
       <div class="col-sm-6 col-lg-3">
         <div class="form-floating">
-          <select id="filter-urgent" class="form-select" aria-label="Filter by urgency">
-            <option value="">All</option>
-            <option value="true">true</option>
-            <option value="false">false</option>
+          <select id="filter-urgent" class="form-select" aria-label="Filtrar por urgencia">
+            <option value="">Todos</option>
+            <option value="true">Urgente</option>
+            <option value="false">Sin urgencia</option>
           </select>
-          <label for="filter-urgent">Urgent</label>
+          <label for="filter-urgent">Urgente</label>
         </div>
       </div>
 
       {{!-- Filtro ordinal: priority=4 --}}
       <div class="col-sm-6 col-lg-3">
         <div class="form-floating">
-          <select id="filter-priority" class="form-select" aria-label="Filter by priority">
-            <option value="">All</option>
+          <select id="filter-priority" class="form-select" aria-label="Filtrar por prioridad">
+            <option value="">Todos</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <label for="filter-priority">Priority</label>
+          <label for="filter-priority">Prioridad</label>
         </div>
       </div>
 
@@ -63,19 +63,19 @@
             min="0"
             max="100"
             class="form-control"
-            placeholder="Minimum progress"
+            placeholder="Avance mínimo"
           >
-          <label for="filter-min-progress">Minimum progress</label>
+          <label for="filter-min-progress">Avance mínimo</label>
         </div>
       </div>
 
       <div class="col-12 d-flex flex-wrap justify-content-end gap-2">
         {{!-- type=reset restaura los controles visuales. JavaScript vuelve a cargar. --}}
         <button id="clear-filters" class="btn btn-outline-secondary" type="reset">
-          Clear
+          Limpiar
         </button>
         <button class="btn btn-primary" type="submit">
-          Apply filters
+          Aplicar filtros
         </button>
       </div>
     </form>

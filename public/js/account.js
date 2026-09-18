@@ -1,3 +1,4 @@
+import { statusLabel, roleLabel } from "./labels.js";
 import { apiFetch, getCurrentUser, getToken } from "./api.js";
 
 const message = document.querySelector("#account-message");
@@ -19,7 +20,7 @@ function renderUserAndProfile(user) {
   document.querySelector("#account-user-id").textContent = user.id;
   document.querySelector("#account-name").textContent = user.name;
   document.querySelector("#account-email").textContent = user.email;
-  document.querySelector("#account-active").textContent = String(user.active);
+  document.querySelector("#account-active").textContent = user.active ? "Sí" : "No";
 
   // Optional chaining evita un error si profile fuera null.
   document.querySelector("#account-phone").textContent = user.profile?.phone ?? "-";
@@ -37,12 +38,12 @@ function renderRoles(roles) {
   for (const role of roles) {
     const badge = document.createElement("span");
     badge.className = "badge rounded-pill text-bg-warning";
-    badge.textContent = role.name;
+    badge.textContent = roleLabel(role.name);
     rolesContainer.appendChild(badge);
   }
 
   if (roles.length === 0) {
-    rolesContainer.textContent = "No roles assigned.";
+    rolesContainer.textContent = "No hay roles asignados.";
   }
 }
 
@@ -58,7 +59,7 @@ function renderTickets(tickets) {
     for (const value of [
       ticket.id,
       ticket.title,
-      ticket.status,
+      statusLabel(ticket.status),
       ticket.priority,
       `${ticket.progress}%`,
     ]) {
